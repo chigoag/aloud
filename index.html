@@ -175,6 +175,14 @@
   .btn-text{text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;padding:10px 6px;opacity:.85;}
   .btn-text:hover{opacity:1;}
 
+  /* For DARK photos (dusk / twilight / night): add class "is-dark" to
+     .hero-stage so the headline flips to light text over a darker wash.
+     e.g. <div class="hero-stage is-dark" style="--hero-img:url('assets/hero.jpg')"> */
+  .hero-stage.is-dark .hero-scrim{background:radial-gradient(62% 50% at 50% 42%,rgba(0,0,0,.32),transparent 72%);}
+  .hero-stage.is-dark h1{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.5);}
+  .hero-stage.is-dark .lede{color:#f1e8df;text-shadow:0 1px 14px rgba(0,0,0,.55);}
+  .hero-stage.is-dark .btn-text{color:#fff;}
+
   /* scroll cue */
   .scrollcue{
     margin:0 auto 26px;display:inline-flex;align-items:center;gap:8px;align-self:center;
