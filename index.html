@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ============================ SEO ============================ -->
+<title>Aloud — Read Any PDF Out Loud, Free | PDF to Speech in Your Browser</title>
+<meta name="description" content="Aloud reads any PDF out loud in your browser — free, no sign-up, completely private. Your files never leave your device. Press play and follow along as each sentence is highlighted." />
+<meta name="keywords" content="read pdf aloud, pdf to speech, text to speech pdf, listen to pdf, free pdf reader voice, pdf read aloud free" />
+<meta name="robots" content="index, follow" />
+<!-- TODO: replace YOUR-DOMAIN with your real domain once you buy one -->
+<link rel="canonical" href="https://YOUR-DOMAIN/" />
+
+<!-- Social share cards -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Aloud — Read Any PDF Out Loud, Free" />
+<meta property="og:description" content="Free, private PDF-to-speech in your browser. Your files never leave your device." />
+<meta property="og:url" content="https://YOUR-DOMAIN/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Aloud — Read Any PDF Out Loud, Free" />
+<meta name="twitter:description" content="Free, private PDF-to-speech in your browser. Your files never leave your device." />
+
+<!-- Security: same defence-in-depth CSP as the app -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+
+<!-- GEO/SEO: structured data so search + AI engines understand the page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Aloud",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web browser",
+      "description": "A free, private web app that reads any PDF out loud. Text extraction and speech happen entirely in your browser — your documents are never uploaded.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is Aloud free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — Aloud is completely free, forever, with no sign-up and no email required. It is supported by optional, voluntary tips." } },
+        { "@type": "Question", "name": "How is Aloud free? How do you keep it running?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Aloud is a passion project kept free for everyone. If people find it useful, they can leave a small voluntary tip to help cover running costs. There is no paywall and no obligation." } },
+        { "@type": "Question", "name": "Are my PDFs uploaded anywhere?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Aloud reads your PDF entirely inside your own browser. The file is never sent to a server, so your documents stay private." } },
+        { "@type": "Question", "name": "Do I need to install anything or create an account?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Aloud runs in any modern web browser with nothing to install and no account to create." } },
+        { "@type": "Question", "name": "Can it read scanned PDFs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not yet. Aloud reads PDFs that contain real text. Scanned PDFs are images of pages and would need OCR, which is not built in yet." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --bg:#f7f3ec; --surface:#ffffff; --surface-2:#f1ece3;
+    --line:#e9e2d7; --blue-600:#1d4ed8; --blue-500:#2563eb; --blue-400:#3b82f6;
+    --blue-300:#60a5fa; --blue-100:#dbe7ff; --blue-50:#eef4ff;
+    --ink:#241f30; --ink-dim:#5b5466; --ink-faint:#9c9384;
+    --radius:18px; --shadow:0 24px 60px -24px rgba(74,48,30,.4);
+    --shadow-soft:0 4px 16px -6px rgba(74,48,30,.2);
+    /* golden-dusk scene palette */
+    --dusk-1:#241a47; --dusk-2:#3f2a63; --dusk-3:#7c3f6e;
+    --dusk-4:#c4613f; --dusk-5:#f0a45f; --dusk-6:#ffd9a0;
+  }
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}   /* ensure hidden ad slots stay hidden */
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+    color:var(--ink);line-height:1.6;
+    background:
+      radial-gradient(900px 520px at 12% 8%, #fbe6cb 0%, transparent 60%),
+      radial-gradient(820px 560px at 105% 2%, #f7dcc1 0%, transparent 55%),
+      var(--bg);
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* nav */
+  nav{display:flex;align-items:center;gap:14px;padding:20px 0;}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .mark{
+    width:36px;height:36px;border-radius:10px;
+    background:linear-gradient(145deg,var(--blue-400),var(--blue-600));
+    display:grid;place-items:center;box-shadow:0 6px 16px -5px rgba(37,99,235,.55);
+  }
+  .mark svg{width:20px;height:20px;}
+  .logo b{font-size:19px;}
+  .nav-cta{margin-left:auto;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+    font:inherit;font-weight:600;text-decoration:none;border:none;
+    border-radius:12px;padding:12px 20px;transition:.16s transform,.16s box-shadow,.16s background;
+  }
+  .btn-primary{
+    background:linear-gradient(145deg,var(--blue-500),var(--blue-600));color:#fff;
+    box-shadow:0 12px 26px -10px rgba(37,99,235,.7);
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 16px 32px -10px rgba(37,99,235,.75);}
+  .btn-ghost{background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:var(--shadow-soft);}
+  .btn-ghost:hover{background:var(--blue-50);border-color:var(--blue-300);}
+  .btn svg{width:18px;height:18px;}
+
+  /* ===== Sunlit hero stage (photo-ready) ===== */
+  .hero-stage{
+    position:relative;overflow:hidden;isolation:isolate;
+    min-height:clamp(600px,92vh,880px);display:flex;flex-direction:column;
+    background:linear-gradient(180deg,#e9eef0 0%,#f1ece1 38%,#f6dcb6 64%,#efce95 80%,#e7bf86 100%);
+  }
+  .scene{position:absolute;inset:0;z-index:0;pointer-events:none;}
+  .sun{
+    position:absolute;left:50%;top:30%;width:min(40vw,360px);height:min(40vw,360px);
+    transform:translate(-50%,-50%);border-radius:50%;
+    background:radial-gradient(circle,rgba(255,247,228,.9) 0%,rgba(255,228,176,.45) 38%,rgba(255,210,150,0) 72%);
+  }
+  .hills{position:absolute;bottom:0;left:0;width:100%;height:auto;display:block;}
+  /* Optional AI-generated photo. Drop your image at assets/hero.jpg and set
+     --hero-img on .hero-stage to switch from the painted scene to the photo. */
+  .hero-photo{position:absolute;inset:0;z-index:1;background-image:var(--hero-img,none);
+    background-size:cover;background-position:center;pointer-events:none;}
+  /* gentle white wash so the centred text stays readable over any image */
+  .hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(62% 46% at 50% 40%,rgba(255,255,255,.55),transparent 72%);}
+  .stage-fade{position:absolute;left:0;right:0;bottom:0;height:120px;z-index:2;
+    background:linear-gradient(180deg,transparent,var(--bg));pointer-events:none;}
+
+  .hero-stage .wrap{position:relative;z-index:3;display:flex;flex-direction:column;flex:1;min-height:0;}
+
+  /* floating pill nav */
+  .pillnav{
+    margin:22px auto 0;display:flex;align-items:center;gap:4px;
+    background:rgba(255,255,255,.82);backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.9);border-radius:999px;
+    padding:7px 7px 7px 16px;box-shadow:0 12px 34px -14px rgba(60,40,25,.45);
+  }
+  .pillnav .logo{margin-right:6px;}
+  .pillnav .logo b{color:var(--ink);font-size:17px;}
+  .pillnav .navlink{padding:8px 13px;border-radius:999px;text-decoration:none;color:var(--ink-dim);font-size:14px;font-weight:500;transition:.15s background,.15s color;}
+  .pillnav .navlink:hover{background:rgba(0,0,0,.05);color:var(--ink);}
+  .pillnav .tip{color:#e0457a;font-weight:600;}
+  .pillnav .tip:hover{background:#ffe3ee;color:#d4396f;}
+  .pillnav .navbtn{
+    margin-left:4px;padding:9px 17px;border-radius:999px;background:var(--ink);color:#fff;
+    text-decoration:none;font-size:14px;font-weight:600;transition:.15s transform,.15s background;
+  }
+  .pillnav .navbtn:hover{background:#3a3350;transform:translateY(-1px);}
+
+  /* centred hero */
+  .hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 0;}
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-dim);
+    background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.95);backdrop-filter:blur(6px);
+    padding:7px 15px;border-radius:999px;margin-bottom:22px;box-shadow:0 8px 20px -10px rgba(60,40,25,.45);
+  }
+  .badge .heart-s{color:#e0457a;}
+  .hero h1{font-size:clamp(40px,6.2vw,72px);line-height:1.02;margin:0 0 18px;letter-spacing:-1.2px;
+    color:var(--ink);text-shadow:0 2px 30px rgba(255,255,255,.55);max-width:15ch;}
+  .hero .lede{font-size:clamp(17px,2vw,20px);color:#4a4458;margin:0 0 30px;max-width:30em;
+    text-shadow:0 1px 12px rgba(255,255,255,.65);}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;}
+  .btn-pill{
+    display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:600;cursor:pointer;border:none;
+    background:#fff;color:var(--ink);border-radius:999px;padding:14px 24px;font-size:15.5px;
+    box-shadow:0 14px 32px -12px rgba(60,40,25,.5);transition:.16s transform,.16s box-shadow;
+  }
+  .btn-pill:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(60,40,25,.55);}
+  .btn-pill svg{width:18px;height:18px;}
+  .btn-text{text-decoration:none;color:var(--ink);font-weight:600;font-size:15.5px;padding:10px 6px;opacity:.85;}
+  .btn-text:hover{opacity:1;}
+
+  /* scroll cue */
+  .scrollcue{
+    margin:0 auto 26px;display:inline-flex;align-items:center;gap:8px;align-self:center;
+    font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;
+    background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(6px);
+    padding:9px 16px;border-radius:999px;
+  }
+  .scrollcue:hover{color:var(--ink);}
+
+  /* product preview card peeking up under the hero */
+  .preview{display:flex;justify-content:center;padding:0 24px 10px;margin-top:-40px;position:relative;z-index:4;}
+  .preview .mock{max-width:560px;width:100%;box-shadow:0 40px 80px -30px rgba(60,40,25,.45),0 0 0 1px rgba(255,255,255,.6);}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    color:var(--blue-600);background:var(--blue-50);border:1px solid var(--blue-100);
+    padding:6px 13px;border-radius:999px;margin-bottom:20px;
+  }
+  .eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--blue-500);box-shadow:0 0 0 4px rgba(37,99,235,.18);}
+  h1{font-size:clamp(34px,5vw,52px);line-height:1.08;margin:0 0 18px;letter-spacing:-.5px;}
+  h1 .grad{background:linear-gradient(120deg,var(--blue-500),#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .lede{font-size:18px;color:var(--ink-dim);margin:0 0 28px;max-width:30em;}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .chips{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px;font-size:13.5px;color:var(--ink-dim);}
+  .chips span{display:inline-flex;align-items:center;gap:7px;}
+  .chips svg{width:16px;height:16px;color:var(--blue-500);}
+
+  /* hero mock (a stylised preview of the reader) */
+  .mock{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;
+  }
+  .mock-top{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--surface-2);}
+  .mock-top i{width:10px;height:10px;border-radius:50%;background:#cdd7ea;}
+  .mock-top i:nth-child(1){background:#f3b1b1;}
+  .mock-top i:nth-child(2){background:#f5d99a;}
+  .mock-top i:nth-child(3){background:#a9dab0;}
+  .mock-top span{margin-left:8px;font-size:12px;color:var(--ink-faint);}
+  .mock-body{padding:22px 24px 8px;font-size:15.5px;line-height:2;color:var(--ink-dim);}
+  .mock-body .hl{background:var(--blue-100);color:var(--ink);border-radius:4px;box-shadow:inset 0 0 0 1px rgba(37,99,235,.25);padding:1px 3px;}
+  .mock-body .dim{color:#aab6cf;}
+  .mock-bar{display:flex;align-items:center;gap:12px;padding:16px 24px 22px;}
+  .mock-play{
+    width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:grid;place-items:center;
+    background:linear-gradient(145deg,var(--blue-400),var(--blue-600));
+    box-shadow:0 10px 22px -7px rgba(37,99,235,.65);
+  }
+  .mock-play svg{width:22px;height:22px;color:#fff;}
+  .mock-track{flex:1;height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden;}
+  .mock-track i{display:block;height:100%;width:42%;background:linear-gradient(90deg,var(--blue-400),var(--blue-600));}
+
+  /* sections */
+  section{padding:56px 0;}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 44px;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,36px);margin:0 0 12px;letter-spacing:-.4px;}
+  .sec-head p{color:var(--ink-dim);font-size:16px;margin:0;}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-soft);}
+  .card .ico{width:46px;height:46px;border-radius:12px;background:var(--blue-50);display:grid;place-items:center;margin-bottom:16px;}
+  .card .ico svg{width:24px;height:24px;color:var(--blue-600);}
+  .card h3{margin:0 0 8px;font-size:18px;}
+  .card p{margin:0;color:var(--ink-dim);font-size:14.5px;}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:step;}
+  .step{position:relative;padding:26px 24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-soft);}
+  .step::before{
+    counter-increment:step;content:counter(step);
+    display:grid;place-items:center;width:34px;height:34px;border-radius:10px;margin-bottom:14px;
+    background:linear-gradient(145deg,var(--blue-400),var(--blue-600));color:#fff;font-weight:700;
+  }
+  .step h3{margin:0 0 6px;font-size:17px;}
+  .step p{margin:0;color:var(--ink-dim);font-size:14.5px;}
+
+  /* privacy band */
+  .band{
+    background:linear-gradient(135deg,#2b2350,#6a4170);color:#f3e6d4;
+    border-radius:24px;padding:44px;text-align:center;box-shadow:var(--shadow);
+  }
+  .band h2{font-size:clamp(24px,3vw,32px);margin:0 0 12px;color:#fff;}
+  .band p{margin:0 auto;max-width:38em;color:#ecd9c6;font-size:16px;}
+
+  /* support / tips */
+  .support-card{
+    text-align:center;background:var(--surface);border:1px solid var(--line);
+    border-radius:24px;padding:48px 40px;box-shadow:var(--shadow);max-width:640px;margin:0 auto;
+  }
+  .support-card .heart{
+    width:60px;height:60px;border-radius:18px;margin:0 auto 18px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#ffe1ec,#ffc9dd);color:#f43f6b;
+  }
+  .support-card .heart svg{width:30px;height:30px;}
+  .support-card h2{font-size:clamp(24px,3vw,32px);margin:0 0 12px;letter-spacing:-.3px;}
+  .support-card p{color:var(--ink-dim);font-size:16px;margin:0 auto 24px;max-width:42em;}
+  .support-card .muted{font-size:13.5px;color:var(--ink-faint);margin:18px auto 0;}
+  .btn-tip{background:linear-gradient(145deg,#fb7299,#f43f6b);color:#fff;box-shadow:0 12px 26px -10px rgba(244,63,107,.6);font-size:16px;padding:14px 26px;}
+  .btn-tip:hover{transform:translateY(-1px);box-shadow:0 16px 32px -10px rgba(244,63,107,.7);}
+
+  /* faq */
+  .faq{max-width:760px;margin:0 auto;}
+  details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:12px;box-shadow:var(--shadow-soft);}
+  summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";color:var(--blue-500);font-size:22px;font-weight:400;}
+  details[open] summary::after{content:"–";}
+  details p{margin:0 0 18px;color:var(--ink-dim);}
+
+  /* final cta */
+  .final{text-align:center;}
+  .final h2{font-size:clamp(26px,3.4vw,38px);margin:0 0 16px;}
+
+  /* ad slot — built, hidden until enabled */
+  .ad-slot{margin:36px auto 0;max-width:728px;min-height:90px;display:grid;place-items:center;
+    border:1px dashed var(--line);border-radius:12px;background:var(--surface-2);
+    color:var(--ink-faint);font-size:11px;letter-spacing:1px;text-transform:uppercase;}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0;color:var(--ink-faint);font-size:13.5px;}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;}
+  .foot-links a{color:var(--ink-dim);text-decoration:none;}
+  .foot-links a:hover{color:var(--blue-600);}
+  .foot-links a[data-cta="support"]{color:var(--blue-600);font-weight:600;}
+
+  @media(max-width:720px){
+    .pillnav{gap:2px;padding:6px 6px 6px 14px;}
+    .pillnav .navlink:not(.tip){display:none;}   /* keep logo · tip · Open app */
+    .preview .mock{margin:0 4px;}
+  }
+  @media(max-width:860px){
+    .cards,.steps{grid-template-columns:1fr;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+  <!-- ============ HERO — sunlit stage ============ -->
+  <!-- TO USE A REAL PHOTO: save your AI image as assets/hero.jpg, then add
+       style="--hero-img:url('assets/hero.jpg')" onto the .hero-stage div below.
+       The painted scene stays as an automatic fallback. -->
+  <div class="hero-stage">
+    <div class="scene" aria-hidden="true">
+      <span class="sun"></span>
+      <svg class="hills" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#cdbfa3" fill-opacity=".5" d="M0,150 C240,110 480,170 720,140 C960,110 1200,165 1440,135 L1440,320 L0,320 Z"/>
+        <path fill="#b6c187" fill-opacity=".9" d="M0,200 C300,160 520,215 760,190 C1010,165 1230,210 1440,185 L1440,320 L0,320 Z"/>
+        <path fill="#8aa85f" d="M0,245 C280,210 560,260 820,240 C1080,220 1280,255 1440,238 L1440,320 L0,320 Z"/>
+        <path fill="#5f7d44" d="M0,285 C320,255 600,300 880,283 C1120,268 1300,295 1440,282 L1440,320 L0,320 Z"/>
+      </svg>
+    </div>
+    <div class="hero-photo" aria-hidden="true"></div>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="stage-fade" aria-hidden="true"></div>
+
+    <div class="wrap">
+      <nav class="pillnav">
+        <a class="logo" href="index.html">
+          <span class="mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+            </svg>
+          </span>
+          <b>Aloud</b>
+        </a>
+        <a class="navlink" href="#how">How it works</a>
+        <a class="navlink" href="#faq">FAQ</a>
+        <!-- TODO: point at your tip page, e.g. https://ko-fi.com/YOUR-PAGE -->
+        <a class="navlink tip" href="#support" data-cta="support">♥ Leave a tip</a>
+        <a class="navbtn" href="app.html" data-cta="nav">Open the app</a>
+      </nav>
+
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <span class="badge"><span class="heart-s">♥</span> Free forever · No uploads · No sign-up</span>
+        <h1>Let your documents read to you.</h1>
+        <p class="lede">Drop in any PDF and press play. Aloud reads it aloud and highlights each line as it goes — right in your browser, so your files never leave your device.</p>
+        <div class="hero-cta">
+          <a class="btn-pill" href="app.html" data-cta="hero">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Open the reader
+          </a>
+          <a class="btn-text" href="#how">See how it works →</a>
+        </div>
+      </section>
+    </div><!-- /.wrap -->
+  </div><!-- /.hero-stage -->
+
+  <!-- product preview peeking up under the hero -->
+  <div class="preview">
+    <div class="mock" aria-hidden="true">
+      <div class="mock-top"><i></i><i></i><i></i><span>annual-report.pdf</span></div>
+      <div class="mock-body">
+        <span class="dim">Aloud reads any PDF out loud, right here in your browser.</span>
+        <span class="hl">It highlights each sentence as it speaks, so you can follow along.</span>
+        Click any line to jump straight to it.
+      </div>
+      <div class="mock-bar">
+        <span class="mock-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="mock-track"><i></i></span>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <!-- ============ FEATURES ============ -->
+    <section>
+      <div class="sec-head">
+        <h2>A reader that actually keeps up with you</h2>
+        <p>Built for getting through documents — reports, articles, study notes, contracts — without staring at the screen.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg></div>
+          <h3>Listen &amp; follow along</h3>
+          <p>Each sentence lights up as it’s read, and the page scrolls itself — so you never lose your place.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+          <h3>Works on any device</h3>
+          <p>Phone, tablet or laptop — any modern browser. Nothing to download, nothing to install.</p>
+        </div>
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Private by design</h3>
+          <p>Your PDF is read inside your own browser. It’s never uploaded to a server — so it can’t leak from one.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section id="how">
+      <div class="sec-head">
+        <h2>Three steps. No fuss.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Drop your PDF</h3><p>Drag a file in, or click to choose one. It opens instantly — no upload, no waiting.</p></div>
+        <div class="step"><h3>Press play</h3><p>Pick a voice and a speed, then hit play. Tap any sentence to jump there.</p></div>
+        <div class="step"><h3>Listen anywhere</h3><p>Follow the highlight on screen, or just put it on and listen while you do something else.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ PRIVACY BAND ============ -->
+    <section>
+      <div class="band">
+        <h2>Your documents stay yours</h2>
+        <p>Plenty of “read my PDF” sites quietly upload your file to their servers. Aloud doesn’t. The whole thing runs on your own machine, so private reports, contracts and notes never travel anywhere they shouldn’t.</p>
+      </div>
+    </section>
+
+    <!-- ============ SUPPORT / TIPS ============ -->
+    <section id="support">
+      <div class="support-card">
+        <div class="heart">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-4.6-8-10.1A4.9 4.9 0 0 1 12 7a4.9 4.9 0 0 1 8 3.9C20 16.4 12 21 12 21z"/></svg>
+        </div>
+        <h2>Keep Aloud free for everyone</h2>
+        <p>Aloud has no ads, no accounts and no paywall — and it always will. If it’s saved you some time or strain, a small tip helps cover the running costs and keeps it online for the next person who needs it.</p>
+        <!-- TODO: replace href with your tip page, e.g. https://ko-fi.com/YOUR-PAGE -->
+        <a class="btn btn-tip" href="#" data-cta="support" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 21s-8-4.6-8-10.1A4.9 4.9 0 0 1 12 7a4.9 4.9 0 0 1 8 3.9C20 16.4 12 21 12 21z"/></svg>
+          Leave a tip
+        </a>
+        <p class="muted">Completely optional. Nothing in Aloud is ever locked behind a tip.</p>
+      </div>
+    </section>
+
+    <!-- ============ FAQ (SEO + GEO) ============ -->
+    <section id="faq">
+      <div class="sec-head"><h2>Questions, answered</h2></div>
+      <div class="faq">
+        <details open><summary>Is Aloud free?</summary><p>Yes — completely free, forever. No sign-up and no email required. If you find it useful, you can leave an optional tip to help keep it running.</p></details>
+        <details><summary>How do you keep it running if it’s free?</summary><p>Aloud is a passion project kept free for everyone. There’s no paywall and no obligation — people who find it handy can leave a small voluntary tip towards the running costs, and that’s it.</p></details>
+        <details><summary>Are my PDFs uploaded anywhere?</summary><p>No. Aloud reads your PDF entirely inside your own browser. The file is never sent to a server, so your documents stay private.</p></details>
+        <details><summary>Do I need an account or to install anything?</summary><p>Neither. Aloud runs in any modern web browser with nothing to install and no account to create.</p></details>
+        <details><summary>Can it read scanned PDFs?</summary><p>Not yet. Aloud reads PDFs that contain real text. A scanned PDF is an image of a page, which would need OCR — that’s on the roadmap.</p></details>
+        <details><summary>Will there be more natural-sounding voices?</summary><p>For now Aloud uses your browser’s built-in voices, which are free and private. More natural-sounding voices may be added in future — and Aloud itself will stay free.</p></details>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA ============ -->
+    <section class="final">
+      <h2>Ready to give your eyes a rest?</h2>
+      <p style="color:var(--ink-dim);margin:0 0 26px;">Open a PDF and press play. That’s the whole thing.</p>
+      <a class="btn btn-primary" href="app.html" data-cta="footer" style="font-size:16px;padding:14px 26px;">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Open the reader — it’s free
+      </a>
+
+      <!-- Ad slot — built but hidden until ADS_ENABLED in site.js -->
+      <div class="ad-slot" data-ad-slot="footer" hidden>Advertisement</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Aloud · Free forever · Reads your PDFs out loud, privately.</span>
+      <span class="foot-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="#support">Support</a>
+        <a href="app.html" data-cta="footer-link">Open the app</a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>

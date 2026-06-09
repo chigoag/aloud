@@ -1,0 +1,13 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Local-only notes or secrets (never commit these)
+*.local
+.env
+
+# Note: vendor/ (pdf.js) IS committed on purpose — the app self-hosts it.

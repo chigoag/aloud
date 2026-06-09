@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- =====================================================================
+     TEMPLATE — written to match Aloud's actual setup (no accounts, no
+     uploads, anonymous analytics, tips via a third party). It is a solid
+     starting point but is NOT legal advice. Before you rely on it, fill in
+     every [TODO] and ideally have it glanced over once real traffic/tips
+     are flowing. Fill in: owner name, contact email, analytics provider,
+     tip platform, and confirm the governing-law country.
+     ===================================================================== -->
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy — Aloud</title>
+<meta name="description" content="How Aloud handles your data: your PDFs never leave your device, and we collect no personal information." />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<style>
+  :root{
+    --bg:#f4f6fb; --surface:#fff; --line:#e2e8f2;
+    --blue-600:#1d4ed8; --blue-500:#2563eb; --blue-400:#3b82f6; --blue-50:#eef4ff; --blue-100:#dbe7ff;
+    --ink:#16223c; --ink-dim:#475979; --ink-faint:#8a99b6;
+    --shadow-soft:0 4px 16px -6px rgba(23,45,98,.22);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--ink);line-height:1.7;
+    background:radial-gradient(900px 520px at 12% -10%, #e7eefc 0%, transparent 60%), var(--bg);}
+  a{color:var(--blue-600);}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  nav{display:flex;align-items:center;gap:12px;padding:20px 0;}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);}
+  .mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,var(--blue-400),var(--blue-600));
+    display:grid;place-items:center;box-shadow:0 6px 16px -5px rgba(37,99,235,.55);}
+  .mark svg{width:19px;height:19px;}
+  .logo b{font-size:18px;}
+  .back{margin-left:auto;font-size:14px;text-decoration:none;color:var(--blue-600);font-weight:600;}
+  .doc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:40px clamp(24px,5vw,52px);
+    box-shadow:var(--shadow-soft);margin-bottom:40px;}
+  h1{font-size:clamp(28px,4vw,38px);margin:0 0 6px;letter-spacing:-.4px;}
+  .updated{color:var(--ink-faint);font-size:13.5px;margin:0 0 28px;}
+  .tldr{background:var(--blue-50);border:1px solid var(--blue-100);border-radius:12px;padding:18px 20px;margin:0 0 30px;}
+  .tldr b{color:var(--blue-600);}
+  h2{font-size:19px;margin:32px 0 10px;letter-spacing:-.2px;}
+  p,li{color:var(--ink-dim);font-size:15.5px;}
+  ul{padding-left:20px;}
+  li{margin-bottom:6px;}
+  .todo{color:#b45309;font-weight:600;}
+  footer{padding:0 0 40px;color:var(--ink-faint);font-size:13.5px;text-align:center;}
+  footer a{color:var(--ink-faint);}
+</style>
+</head>
+<body>
+  <header class="wrap">
+    <nav>
+      <a class="logo" href="index.html">
+        <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></span>
+        <b>Aloud</b>
+      </a>
+      <a class="back" href="index.html">← Back to Aloud</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <article class="doc">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: 9 June 2026</p>
+
+      <div class="tldr">
+        <b>The short version:</b> Aloud reads your PDFs entirely inside your own browser. Your files are <b>never uploaded</b> to us or anyone else. We don’t ask for your name or email, we don’t use tracking cookies, and we only count anonymous usage so we can keep the tool working.
+      </div>
+
+      <h2>1. Who we are</h2>
+      <p>Aloud (“we”, “us”) is a free tool that reads PDF documents aloud in your web browser. This policy explains what happens to data when you use it. If you have any questions, contact us at <span class="todo">[TODO: your-email@example.com]</span>.</p>
+
+      <h2>2. Your PDFs never leave your device</h2>
+      <p>When you open a PDF in Aloud, the file is read and converted to speech <strong>locally, on your own device</strong>. It is not sent to our servers or any third party. We never see, store, or have access to the documents you open. When you close or refresh the page, the file is gone from the app.</p>
+
+      <h2>3. What we collect — and what we don’t</h2>
+      <p>We do <strong>not</strong> collect:</p>
+      <ul>
+        <li>Your name, email address, or any account details (there are no accounts).</li>
+        <li>The contents of your PDFs.</li>
+        <li>Anything that personally identifies you.</li>
+      </ul>
+      <p>We collect a small amount of <strong>anonymous, aggregated usage information</strong> so we can understand whether the tool is working and worth maintaining — for example: how many people visit, which country region (not your exact location), what type of device, and which features get used (such as “a PDF was opened” or “play was pressed”). None of this identifies you and none of it includes your documents.</p>
+
+      <h2>4. Analytics</h2>
+      <p>We use a privacy-focused analytics service, <span class="todo">[TODO: name your provider, e.g. Cloudflare Web Analytics]</span>, which is designed to measure traffic <strong>without cookies</strong> and without building a profile of individual visitors. It does not track you across other websites.</p>
+
+      <h2>5. Cookies</h2>
+      <p>Aloud does not set tracking or advertising cookies. We may use minimal local storage strictly to remember your own settings (such as your chosen voice or speed) on your device — this never leaves your browser. If this ever changes, we will update this policy and, where required, ask for your consent.</p>
+
+      <h2>6. Tips and donations</h2>
+      <p>Aloud is free. If you choose to leave a voluntary tip to help with running costs, the payment is handled by a third-party platform <span class="todo">[TODO: e.g. Ko-fi / Buy Me a Coffee / PayPal]</span>. We never see or store your card or payment details — those are processed by that platform under <strong>their own privacy policy</strong>, which we encourage you to read.</p>
+
+      <h2>7. Server logs</h2>
+      <p>Like virtually all websites, our hosting provider may automatically record basic technical information (such as IP addresses and browser type) for short periods to keep the service secure and reliable. This is standard infrastructure logging and is not used to identify or track you.</p>
+
+      <h2>8. Children</h2>
+      <p>Aloud is a general-purpose tool and is not directed at children under 13. We do not knowingly collect any personal data from children.</p>
+
+      <h2>9. Your rights</h2>
+      <p>Depending on where you live (for example under UK/EU GDPR or California’s CCPA), you have rights over your personal data, such as access and erasure. Because Aloud does not collect personal data that identifies you, there is normally nothing for us to hold or delete — but if you have any concern, contact us at <span class="todo">[TODO: your-email@example.com]</span> and we’ll help.</p>
+
+      <h2>10. International visitors</h2>
+      <p>Aloud can be used from anywhere. Because processing happens in your own browser, your documents stay in your country, on your device.</p>
+
+      <h2>11. Changes to this policy</h2>
+      <p>If we change how Aloud works in a way that affects your privacy, we’ll update this page and change the “last updated” date above.</p>
+
+      <h2>12. Contact</h2>
+      <p>Questions about privacy? Email <span class="todo">[TODO: your-email@example.com]</span>.</p>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Aloud · <a href="terms.html">Terms of Use</a> · <a href="index.html">Home</a></div>
+  </footer>
+</body>
+</html>
