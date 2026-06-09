@@ -321,9 +321,12 @@
 </head>
 <body>
   <!-- ============ HERO — sunlit stage ============ -->
-  <!-- TO USE A REAL PHOTO: save your AI image as assets/hero.jpg, then add
-       style="--hero-img:url('assets/hero.jpg')" onto the .hero-stage div below.
-       The painted scene stays as an automatic fallback. -->
+  <!-- The background photo follows the visitor's local time of day: site.js
+       (initHeroScene) sets --hero-img + toggles .is-dark automatically from the
+       images in assets/ (dawn, morning, afternoon, golden-hour, dusk, twilight,
+       night, misty-morning). The painted scene below is the no-JS fallback.
+       To FORCE one image instead, add e.g.
+       class="hero-stage is-dark" style="--hero-img:url('assets/dusk.jpg')". -->
   <div class="hero-stage">
     <div class="scene" aria-hidden="true">
       <span class="sun"></span>

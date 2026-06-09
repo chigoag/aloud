@@ -1,9 +1,21 @@
 # assets
 
-Put images here. For the hero background, save your photo as `hero.jpg`, then
-enable it in `index.html` (see the comment above the `.hero-stage` div).
+Hero background photos. The landing page (`site.js` → `initHeroScene`) picks one
+**automatically based on the visitor's local time of day**, so the filenames
+matter — keep these exact names:
 
-Tips:
-- Landscape orientation, roughly 2000–2400px wide.
-- Keep a paler/brighter area near the top so the dark headline stays readable.
-- Compress it (aim for under ~400 KB) so the page loads fast.
+| File | Shown around | Headline text |
+|------|--------------|---------------|
+| `dawn.jpg` | 05:00–06:30 | dark |
+| `misty-morning.jpg` | 06:30–08:00 | dark |
+| `morning.jpg` | 08:00–11:00 | dark |
+| `afternoon.jpg` | 11:00–16:00 | dark |
+| `golden-hour.jpg` | 16:00–18:00 | dark |
+| `dusk.jpg` | 18:00–19:30 | light (`is-dark`) |
+| `twilight.jpg` | 19:30–21:00 | light (`is-dark`) |
+| `night.jpg` | 21:00–05:00 | light (`is-dark`) |
+
+To swap an image, just replace the file (same name) and `git push`.
+
+Tips: landscape, ~2000–2400px wide, compressed to a few hundred KB. Keep a
+paler area near the top so the headline stays readable on the light-text scenes.

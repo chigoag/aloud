@@ -32,11 +32,12 @@ then visit http://localhost:4322
 > Note: the `_headers` security file only takes effect once hosted on
 > Cloudflare Pages or Netlify, not when opened locally.
 
-## Add a hero background photo
-1. Generate or download a landscape image and save it as `assets/hero.jpg`.
-2. In `index.html`, find the `.hero-stage` div and add:
-   `style="--hero-img:url('assets/hero.jpg')"`.
-The painted scene stays as an automatic fallback if no image is set.
+## Hero background (time-of-day)
+The hero photo changes with the visitor's local time of day — dawn, morning,
+afternoon, golden-hour, dusk, twilight, night, misty-morning. The logic lives in
+`site.js` (`initHeroScene`) and the images live in `assets/` (see
+`assets/README.md` for the filenames and schedule). To change a scene, just
+replace the matching file and push. A painted CSS scene is the no-JS fallback.
 
 ## Deploy
 Designed for **Cloudflare Pages** (free): connect this GitHub repo, set the
