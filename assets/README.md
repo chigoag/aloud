@@ -1,19 +1,21 @@
 # assets
 
 Hero background photos. The landing page (`site.js` → `initHeroScene`) picks one
-**automatically based on the visitor's local time of day**, so the filenames
-matter — keep these exact names:
+**automatically from the real position of the sun** for the visitor's date, time
+and approximate location (computed from their time zone — no prompts, no
+network). So in British summer 6pm shows `afternoon`, but in winter the same
+clock time would show `dusk`/`night`. Keep these exact filenames:
 
-| File | Shown around | Headline text |
-|------|--------------|---------------|
-| `dawn.jpg` | 05:00–06:30 | dark |
-| `misty-morning.jpg` | 06:30–08:00 | dark |
-| `morning.jpg` | 08:00–11:00 | dark |
-| `afternoon.jpg` | 11:00–16:00 | dark |
-| `golden-hour.jpg` | 16:00–18:00 | dark |
-| `dusk.jpg` | 18:00–19:30 | light (`is-dark`) |
-| `twilight.jpg` | 19:30–21:00 | light (`is-dark`) |
-| `night.jpg` | 21:00–05:00 | light (`is-dark`) |
+| File | Shown when (relative to the sun) | Headline text |
+|------|----------------------------------|---------------|
+| `dawn.jpg` | civil dawn → sunrise | dark |
+| `misty-morning.jpg` | sunrise → end of morning golden hour | dark |
+| `morning.jpg` | morning golden hour → solar noon | dark |
+| `afternoon.jpg` | solar noon → evening golden hour | dark |
+| `golden-hour.jpg` | evening golden hour → sunset | dark |
+| `dusk.jpg` | sunset → end of civil twilight | light (`is-dark`) |
+| `twilight.jpg` | civil twilight → astronomical night | light (`is-dark`) |
+| `night.jpg` | astronomical night (deep night) | light (`is-dark`) |
 
 To swap an image, just replace the file (same name) and `git push`.
 
